@@ -1,5 +1,18 @@
 import express from 'express';
 
-const app = express();
+class App {
+  public app: express.Express;
+  constructor() {
+    this.app = express();
+    // this.config();
 
-export default app;
+    this.app.get('/', (req, res) => res.json({ ok: true }));
+  }
+  public start(PORT: string | number):void {
+    this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+  }
+}
+
+export { App };
+
+export const { app } = new App();
