@@ -10,4 +10,8 @@ export default abstract class AbstractODM<T> {
     this._modelName = modelName;
     this.model = models[this._modelName] || model(this._modelName, this._schema);
   }
+  
+  async create(obj: T):Promise<T> {
+    return this.model.create({ ...obj });
+  }
 }
