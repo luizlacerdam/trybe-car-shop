@@ -1,6 +1,6 @@
-import IMotocycle from '../Interfaces/IMotocycle';
+import IMotorcycle from '../Interfaces/IMotorcycle';
 
-export default class Motocycle {
+export default class Motorcycle {
   protected id: string | undefined;
   protected model: string;
   protected year: number;
@@ -10,7 +10,7 @@ export default class Motocycle {
   private category: 'Street' | 'Custom' | 'Trail';
   private engineCapacity: number;
 
-  constructor(car: IMotocycle) {
+  constructor(car: IMotorcycle) {
     this.id = car.id;
     this.model = car.model;
     this.year = car.year;

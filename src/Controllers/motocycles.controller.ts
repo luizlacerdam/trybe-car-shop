@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import MotocyclesService from '../Services/motocycles.service';
+import MotorcyclesService from '../Services/motorcycles.service';
 
-export default class MotocyclesController {
-  private _motocycleService: MotocyclesService;
+export default class MotorcyclesController {
+  private _motorcycleService: MotorcyclesService;
   private _req: Request;
   private _res: Response;
   private _next: NextFunction;
@@ -11,18 +11,18 @@ export default class MotocyclesController {
     req: Request, 
     res: Response, 
     next: NextFunction,
-    motocycleService: MotocyclesService,
+    motorcycleService: MotorcyclesService,
   ) {
     this._req = req;
     this._res = res;
     this._next = next;
-    this._motocycleService = motocycleService;
+    this._motorcycleService = motorcycleService;
   }
 
-  public async addNewMotocycle() {
+  public async addNewMotorcycle() {
     try {
       const newMoto = this._req.body;
-      const data = await this._motocycleService.addNewMotocycle(newMoto);
+      const data = await this._motorcycleService.addNewMotorcycle(newMoto);
       return this._res.status(201).json(data);
     } catch (error) {
       this._next(error);
@@ -30,7 +30,7 @@ export default class MotocyclesController {
   }
   public async getAll() {
     try {
-      const data = await this._motocycleService.getAll();
+      const data = await this._motorcycleService.getAll();
       return this._res.status(200).json(data);
     } catch (error) {
       this._next(error);
@@ -39,7 +39,7 @@ export default class MotocyclesController {
   public async getById() {
     try {
       const { id } = this._req.params;
-      const data = await this._motocycleService.getById(id);
+      const data = await this._motorcycleService.getById(id);
       if (!data) {
         return this._res.status(404).json({ message: 'Motorcycle not found' });
       }
@@ -53,12 +53,12 @@ export default class MotocyclesController {
     try {
       const { id } = this._req.params;
       const { body } = this._req;
-      const car = await this._motocycleService.getById(id);
+      const car = await this._motorcycleService.getById(id);
       if (!car) {
         return this._res.status(404).json({ message: 'Motorcycle not found' });
       }
       
-      const data = await this._motocycleService.updateMotoById(id, body);
+      const data = await this._motorcycleService.updateMotoById(id, body);
       return this._res.status(200).json(data);
     } catch (error) {
       return this._res.status(422).json({ message: 'Invalid mongo id' });

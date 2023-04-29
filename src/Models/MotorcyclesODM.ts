@@ -1,10 +1,10 @@
 import { Schema } from 'mongoose';
 import AbstractODM from './AbstractODM';
-import IMotocycle from '../Interfaces/IMotocycle';
+import IMotorcycle from '../Interfaces/IMotorcycle';
 
-export default class MotocyclesODM extends AbstractODM<IMotocycle> {
+export default class MotorcyclesODM extends AbstractODM<IMotorcycle> {
   constructor() {
-    const schema = new Schema<IMotocycle>({
+    const schema = new Schema<IMotorcycle>({
       model: { type: String, required: true },
       year: { type: Number, required: true },
       color: { type: String, required: true },
@@ -13,16 +13,16 @@ export default class MotocyclesODM extends AbstractODM<IMotocycle> {
       category: { type: String, required: true },
       engineCapacity: { type: Number, required: true },
     });
-    super('Motocycle', schema);
+    super('Motorcycle', schema);
   }
-  public async find(): Promise<IMotocycle[]> {
+  public async find(): Promise<IMotorcycle[]> {
     return this.model.find();
   }
-  public async findById(id: string): Promise<IMotocycle | null> {
+  public async findById(id: string): Promise<IMotorcycle | null> {
     return this.model.findById(id);
   }
 
-  public async updateMotocycle(id: string, body: IMotocycle): Promise<IMotocycle | null> {
+  public async updateMotorcycle(id: string, body: IMotorcycle): Promise<IMotorcycle | null> {
     return this.model.findByIdAndUpdate({ _id: id }, { ...body }, { new: true });
   }
 }

@@ -1,17 +1,6 @@
-// import Car from '../Domains/Car';
+import IVehicle from './IVehicle';
 
-export default interface ICar {
-  id?: string;
-  model: string;
-  year: number;
-  color: string;
-  status?: boolean;
-  buyValue: number;
+export default interface ICar extends IVehicle {
   doorsQty: number;
   seatsQty: number;
 }
-
-// export interface ICarService {
-//   newCarDomain(car: ICar | null): Car | null
-//   addNewCar(car: ICar): any
-// }
