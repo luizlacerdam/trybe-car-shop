@@ -7,5 +7,7 @@ const carsService = new CarsService();
 
 carsRoutes.post('/', (req, res, next) => new CarsController(req, res, next, carsService).newCar());
 carsRoutes.get('/', (req, res, next) => new CarsController(req, res, next, carsService).getAll());
+carsRoutes.get('/:id', (req, res, next) =>
+  new CarsController(req, res, next, carsService).getById());
 
 export default carsRoutes;
