@@ -9,7 +9,7 @@ carsRoutes.post('/', (req, res, next) => new CarsController(req, res, next, cars
 carsRoutes.get('/', (req, res, next) => new CarsController(req, res, next, carsService).getAll());
 carsRoutes.get('/:id', (req, res, next) =>
   new CarsController(req, res, next, carsService).getById());
-carsRoutes.patch('/:id', (req, res, next) =>
+carsRoutes.put('/:id', (req, res, next) =>
   new CarsController(req, res, next, carsService).updateCarById());
 
 export default carsRoutes;
