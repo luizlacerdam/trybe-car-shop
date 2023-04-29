@@ -28,4 +28,11 @@ export default class CarsService {
     if (!data) return null;
     return this.newCarDomain(data);
   }
+
+  public async updateCarById(id: string, body: ICar) {
+    const carsODM = new CarsODM();
+    const data = await carsODM.updateCar(id, body);
+    if (!data) return null;
+    return this.newCarDomain(data);
+  }
 }
