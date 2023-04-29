@@ -23,4 +23,12 @@ export default class CarsController {
       this._next(error);
     }
   }
+  public async getAll() {
+    try {
+      const data = await this._carsService.getAll();
+      return this._res.status(200).json(data);
+    } catch (error) {
+      this._next(error);
+    }
+  }
 }
