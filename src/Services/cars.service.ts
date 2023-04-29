@@ -22,9 +22,10 @@ export default class CarsService {
     return carsArray;
   }
 
-  public async getByid(id: string) {
+  public async getById(id: string) {
     const carsODM = new CarsODM();
-    const data = await carsODM.findById(id);    
+    const data = await carsODM.findById(id);
+    if (!data) return null;
     return this.newCarDomain(data);
   }
 }
