@@ -15,4 +15,7 @@ export default class CarsODM extends AbstractODM<ICar> {
     });
     super('Car', schema);
   }
+  public async find(): Promise<ICar[]> {
+    return this.model.find();
+  }
 }
