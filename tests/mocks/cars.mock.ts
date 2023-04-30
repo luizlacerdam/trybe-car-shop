@@ -36,6 +36,7 @@ export const allCarsResponse: ICar[] = [
     model: 'Tempra',
     year: 1995,
     color: 'Black',
+    status: false,
     buyValue: 39,
     doorsQty: 2,
     seatsQty: 5,
