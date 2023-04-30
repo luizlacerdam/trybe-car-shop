@@ -12,4 +12,7 @@ describe('Testa a criação de carros:', function () {
 
     expect(result).to.be.deep.equal(newCarResponse);
   });
+  // afterEach(function () {
+  //   sinon.restore();
+  // });
 });
