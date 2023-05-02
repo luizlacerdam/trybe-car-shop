@@ -2,7 +2,7 @@ import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
 import CarsODM from '../Models/CarsODM';
 
-// classe generica
+// classe generic
 export default class CarsService {
   private newCarDomain(car: ICar | null): Car | null {
     if (car) {
