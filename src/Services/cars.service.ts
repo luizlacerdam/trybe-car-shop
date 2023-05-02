@@ -2,6 +2,7 @@ import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
 import CarsODM from '../Models/CarsODM';
 
+// classe generica
 export default class CarsService {
   private newCarDomain(car: ICar | null): Car | null {
     if (car) {
@@ -10,7 +11,7 @@ export default class CarsService {
     return null;
   }
   public async addNewCar(car: ICar) {
-    const carsODM = new CarsODM();
+    const carsODM = new CarsODM(); // aqui
     const newCar = await carsODM.create(car);
     return this.newCarDomain(newCar);
   }

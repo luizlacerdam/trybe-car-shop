@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import CarsService from '../Services/cars.service';
 
+// classe generica
 export default class CarsController {
   private _carsService: CarsService;
   private _req: Request;
