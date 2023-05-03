@@ -9,7 +9,7 @@ export default class MotocyclesService {
     }
     return null;
   }
-  public async addNewMotorcycle(moto: IMotorcycle) {
+  public async create(moto: IMotorcycle) {
     const motorcyclesODM = new MotorcyclesODM();
     const newMoto = await motorcyclesODM.create(moto);
     return this.newMotorcycleDomain(newMoto);
@@ -29,7 +29,7 @@ export default class MotocyclesService {
     return this.newMotorcycleDomain(data);
   }
 
-  public async updateMotoById(id: string, body: IMotorcycle) {
+  public async update(id: string, body: IMotorcycle) {
     const motorcyclesODM = new MotorcyclesODM();
     const data = await motorcyclesODM.update(id, body);
     if (!data) return null;

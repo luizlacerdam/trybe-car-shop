@@ -5,5 +5,4 @@ export default interface IVehicle {
   color: string;
   status?: boolean;
   buyValue: number;
-  type: string;
 }

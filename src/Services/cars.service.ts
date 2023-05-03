@@ -1,12 +1,10 @@
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
 import CarsODM from '../Models/CarsODM';
-import AbstractService from './abstract.service';
 
-export default class CarsService extends AbstractService<ICar, Car, CarsODM> {
+export default class CarsService {
   private _domain: CarsODM;
   constructor(domain: CarsODM) {
-    super(domain);
     this._domain = domain;
   }
   private newCarDomain(car: ICar | null): Car | null {
@@ -15,7 +13,7 @@ export default class CarsService extends AbstractService<ICar, Car, CarsODM> {
     }
     return null;
   }
-  public async addNewCar(car: ICar) {
+  public async create(car: ICar) {
     const carsODM = this._domain;
     const newCar = await carsODM.create(car);
     return this.newCarDomain(newCar);
@@ -35,7 +33,7 @@ export default class CarsService extends AbstractService<ICar, Car, CarsODM> {
     return this.newCarDomain(data);
   }
 
-  public async updateCarById(id: string, body: ICar) {
+  public async update(id: string, body: ICar) {
     const carsODM = this._domain;
     const data = await carsODM.update(id, body);
     if (!data) return null;
