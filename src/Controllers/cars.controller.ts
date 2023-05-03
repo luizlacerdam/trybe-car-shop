@@ -18,7 +18,7 @@ export default class CarsController {
   public async newCar() {
     try {
       const newCar = this._req.body;
-      const data = await this._carsService.addNewCar(newCar);
+      const data = await this._carsService.create(newCar);
       return this._res.status(201).json(data);
     } catch (error) {
       this._next(error);
@@ -54,7 +54,7 @@ export default class CarsController {
         return this._res.status(404).json({ message: 'Car not found' });
       }
       
-      const data = await this._carsService.updateCarById(id, body);
+      const data = await this._carsService.update(id, body);
       return this._res.status(200).json(data);
     } catch (error) {
       return this._res.status(422).json({ message: 'Invalid mongo id' });

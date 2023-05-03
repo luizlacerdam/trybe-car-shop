@@ -22,7 +22,7 @@ export default class MotorcyclesController {
   public async addNewMotorcycle() {
     try {
       const newMoto = this._req.body;
-      const data = await this._motorcycleService.addNewMotorcycle(newMoto);
+      const data = await this._motorcycleService.create(newMoto);
       return this._res.status(201).json(data);
     } catch (error) {
       this._next(error);
@@ -58,7 +58,7 @@ export default class MotorcyclesController {
         return this._res.status(404).json({ message: 'Motorcycle not found' });
       }
       
-      const data = await this._motorcycleService.updateMotoById(id, body);
+      const data = await this._motorcycleService.update(id, body);
       return this._res.status(200).json(data);
     } catch (error) {
       return this._res.status(422).json({ message: 'Invalid mongo id' });
