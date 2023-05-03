@@ -3,9 +3,9 @@ import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcyclesODM from '../Models/MotorcyclesODM';
 
 export default class MotocyclesService {
-  private newMotorcycleDomain(car: IMotorcycle | null): Motorcycle | null {
-    if (car) {
-      return new Motorcycle(car);
+  private newMotorcycleDomain(moto: IMotorcycle | null): Motorcycle | null {
+    if (moto) {
+      return new Motorcycle(moto);
     }
     return null;
   }
@@ -31,7 +31,7 @@ export default class MotocyclesService {
 
   public async updateMotoById(id: string, body: IMotorcycle) {
     const motorcyclesODM = new MotorcyclesODM();
-    const data = await motorcyclesODM.updateMotorcycle(id, body);
+    const data = await motorcyclesODM.update(id, body);
     if (!data) return null;
     return this.newMotorcycleDomain(data);
   }

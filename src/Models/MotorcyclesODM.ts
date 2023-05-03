@@ -15,14 +15,4 @@ export default class MotorcyclesODM extends AbstractODM<IMotorcycle> {
     });
     super('Motorcycle', schema);
   }
-  public async find(): Promise<IMotorcycle[]> {
-    return this.model.find();
-  }
-  public async findById(id: string): Promise<IMotorcycle | null> {
-    return this.model.findById(id);
-  }
-
-  public async updateMotorcycle(id: string, body: IMotorcycle): Promise<IMotorcycle | null> {
-    return this.model.findByIdAndUpdate({ _id: id }, { ...body }, { new: true });
-  }
 }

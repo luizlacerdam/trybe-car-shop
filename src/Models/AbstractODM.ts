@@ -1,4 +1,4 @@
-import { Model, Schema, models, model } from 'mongoose';
+import { Model, Schema, models, model, UpdateQuery } from 'mongoose';
 
 export default abstract class AbstractODM<T> {
   protected model: Model<T>;
@@ -11,7 +11,18 @@ export default abstract class AbstractODM<T> {
     this.model = models[this._modelName] || model(this._modelName, this._schema);
   }
   
-  async create(obj: T):Promise<T> {
+  public async create(obj: T):Promise<T> {
     return this.model.create({ ...obj });
+  }
+
+  public async find(): Promise<T[]> {
+    return this.model.find();
+  }
+  public async findById(id: string): Promise<T | null> {
+    return this.model.findById(id);
+  }
+
+  public async update(id: string, body: T): Promise<T | null> {
+    return this.model.findByIdAndUpdate({ _id: id }, { ...body } as UpdateQuery<T>, { new: true });
   }
 }

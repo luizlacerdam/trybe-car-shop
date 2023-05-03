@@ -15,14 +15,4 @@ export default class CarsODM extends AbstractODM<ICar> {
     });
     super('Car', schema);
   }
-  public async find(): Promise<ICar[]> {
-    return this.model.find();
-  }
-  public async findById(id: string): Promise<ICar | null> {
-    return this.model.findById(id);
-  }
-
-  public async updateCar(id: string, body: ICar): Promise<ICar | null> {
-    return this.model.findByIdAndUpdate({ _id: id }, { ...body }, { new: true });
-  }
 }
