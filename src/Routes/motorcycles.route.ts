@@ -8,12 +8,12 @@ const motorcyclesODM = new MotorcyclesODM();
 const motorcycleService = new MotorcyclesService(motorcyclesODM);
 
 motorcycleRouter.post('/', (req, res, next) =>
-  new MotorcyclesController(req, res, next, motorcycleService).addNewMotorcycle());
+  new MotorcyclesController(motorcycleService, req, res, next).create());
 motorcycleRouter.get('/', (req, res, next) =>
-  new MotorcyclesController(req, res, next, motorcycleService).getAll());
+  new MotorcyclesController(motorcycleService, req, res, next).getAll());
 motorcycleRouter.get('/:id', (req, res, next) =>
-  new MotorcyclesController(req, res, next, motorcycleService).getById());
+  new MotorcyclesController(motorcycleService, req, res, next).getById());
 motorcycleRouter.put('/:id', (req, res, next) =>
-  new MotorcyclesController(req, res, next, motorcycleService).updateMotoById());
+  new MotorcyclesController(motorcycleService, req, res, next).update());
 
 export default motorcycleRouter;

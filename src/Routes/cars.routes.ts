@@ -7,11 +7,11 @@ const carsODM = new CarsODM();
 const carsRoutes = Router();
 const carsService = new CarsService(carsODM);
 
-carsRoutes.post('/', (req, res, next) => new CarsController(req, res, next, carsService).newCar());
-carsRoutes.get('/', (req, res, next) => new CarsController(req, res, next, carsService).getAll());
+carsRoutes.post('/', (req, res, next) => new CarsController(carsService, req, res, next).create());
+carsRoutes.get('/', (req, res, next) => new CarsController(carsService, req, res, next).getAll());
 carsRoutes.get('/:id', (req, res, next) =>
-  new CarsController(req, res, next, carsService).getById());
+  new CarsController(carsService, req, res, next).getById());
 carsRoutes.put('/:id', (req, res, next) =>
-  new CarsController(req, res, next, carsService).updateCarById());
+  new CarsController(carsService, req, res, next).update());
 
 export default carsRoutes;
