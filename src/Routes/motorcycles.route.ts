@@ -3,10 +3,11 @@ import MotorcyclesService from '../Services/motorcycles.service';
 import MotorcyclesController from '../Controllers/motocycles.controller';
 import MotorcyclesODM from '../Models/MotorcyclesODM';
 import IdValidation from '../Middlewares/idValidation.middleware';
+import VehiclesValidations from '../Validations/vehicles.validations';
 
 const motorcycleRouter = Router();
 const motorcyclesODM = new MotorcyclesODM();
-const motorcycleService = new MotorcyclesService(motorcyclesODM);
+const motorcycleService = new MotorcyclesService(motorcyclesODM, VehiclesValidations);
 
 motorcycleRouter.post('/', (req, res, next) =>
   new MotorcyclesController(motorcycleService, req, res, next).create());

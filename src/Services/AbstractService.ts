@@ -1,14 +1,17 @@
 import Vehicle from '../Domains/Vehicle';
 import VehicleFactory from '../Domains/VehicleFactory';
+import IVehicleValidation from '../Interfaces/IVehicleValidation';
 import AbstractODM from '../Models/AbstractODM';
 
 export default abstract class AbstractService<T> {
   protected _odm: AbstractODM<T>;
   private _type: string;
+  private _validation: IVehicleValidation;
 
-  constructor(odm: AbstractODM<T>, type:string) {
+  constructor(odm: AbstractODM<T>, type:string, validation: IVehicleValidation) {
     this._odm = odm;
     this._type = type;
+    this._validation = validation;
   }
   // underfined or null?
   public async create(vehicle: T):Promise<Vehicle | undefined> {
@@ -24,10 +27,10 @@ export default abstract class AbstractService<T> {
     return vehiclesArray;
   }
 
-  public async getById(id: string):Promise<Vehicle | undefined | null> {
+  public async getById(id: string):Promise<Vehicle | undefined> {
     const vehicle = await this._odm.findById(id);
-    if (!vehicle) return null;
-    return VehicleFactory.createDomain<T>(this._type, vehicle);
+    this._validation.validateExistVehicle<T>(this._type, vehicle as T);
+    return VehicleFactory.createDomain<T>(this._type, vehicle as T);
   }
 
   public async update(id: string, body: T): Promise<Vehicle | null | undefined> {
