@@ -35,7 +35,7 @@ export default abstract class AbstractService<T> {
 
   public async update(id: string, body: T): Promise<Vehicle | null | undefined> {
     const vehicle = await this._odm.update(id, body);
-    if (!vehicle) return null;
-    return VehicleFactory.createDomain<T>(this._type, vehicle);
+    this._validation.validateExistVehicle<T>(this._type, vehicle as T);
+    return VehicleFactory.createDomain<T>(this._type, vehicle as T);
   }
 } 
