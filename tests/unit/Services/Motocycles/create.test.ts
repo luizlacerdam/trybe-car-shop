@@ -13,5 +13,6 @@ describe('Testa a criação de motos:', function () {
     const result = await service.create(newMotorcycleRequest);
 
     expect(result).to.be.deep.equal(newMotorcycleResponse);
+    sinon.restore();
   });
 });

@@ -12,5 +12,6 @@ describe('Testa se recupera todas as motos com sucesso:', function () {
     const service = new MotocyclesService(motorcyclesODM);
     const result = await service.getAll();
     expect(result).to.be.deep.equal(getAllMotocyclesResponse);
+    sinon.restore();
   });
 });

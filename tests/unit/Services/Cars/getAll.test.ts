@@ -12,5 +12,6 @@ describe('Testa se recupera todos os carros com sucesso:', function () {
     const service = new CarsService(carsODM);
     const result = await service.getAll();
     expect(result).to.be.deep.equal(allCarsResponse);
+    sinon.restore();
   });
 });

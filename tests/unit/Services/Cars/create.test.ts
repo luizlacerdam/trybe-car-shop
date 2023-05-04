@@ -13,5 +13,6 @@ describe('Testa a criação de carros:', function () {
     const result = await service.create(newCarReq);
 
     expect(result).to.be.deep.equal(newCarResponse);
+    sinon.restore();
   });
 });
