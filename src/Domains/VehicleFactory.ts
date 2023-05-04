@@ -12,6 +12,5 @@ export default class VehicleFactory {
     if (type === VehicleTypes.MOTORCYCLE) {
       return new Motorcycle(vehicle as unknown as IMotorcycle);
     }
-    return new Error('Invalid vehicle type!');
   }
 }
