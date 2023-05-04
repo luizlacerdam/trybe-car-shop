@@ -11,6 +11,7 @@
 import express from 'express';
 import motorcycleRouter from './Routes/motorcycles.route';
 import carsRoutes from './Routes/cars.routes';
+import ErrorHandler from './Middlewares/error.middleware';
 
 export default class App {
   public app: express.Express;
@@ -22,7 +23,7 @@ export default class App {
     this.app.use(express.json());
     this.app.use('/motorcycles', motorcycleRouter);
     this.app.use('/cars', carsRoutes);
-    // this.app.use();
+    this.app.use(ErrorHandler.errorMiddleware);
   }
   public start(PORT: string | number):void {
     this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
