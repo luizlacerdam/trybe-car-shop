@@ -2,6 +2,7 @@ import { Router } from 'express';
 import CarsController from '../Controllers/cars.controller';
 import CarsService from '../Services/cars.service';
 import CarsODM from '../Models/CarsODM';
+import IdValidation from '../Middlewares/idValidation.middleware';
 
 const carsODM = new CarsODM();
 const carsRoutes = Router();
@@ -9,9 +10,9 @@ const carsService = new CarsService(carsODM);
 
 carsRoutes.post('/', (req, res, next) => new CarsController(carsService, req, res, next).create());
 carsRoutes.get('/', (req, res, next) => new CarsController(carsService, req, res, next).getAll());
-carsRoutes.get('/:id', (req, res, next) =>
+carsRoutes.get('/:id', IdValidation.validate, (req, res, next) =>
   new CarsController(carsService, req, res, next).getById());
-carsRoutes.put('/:id', (req, res, next) =>
+carsRoutes.put('/:id', IdValidation.validate, (req, res, next) =>
   new CarsController(carsService, req, res, next).update());
 
 export default carsRoutes;
