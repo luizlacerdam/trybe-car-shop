@@ -26,7 +26,7 @@ describe('Testa se recupera um único carro pelo ID com sucesso:', function () {
       expect((error as Error).message).to.equal('car not found');
     }
   });
-  it('3. Testa getById service se retorna null com id aleatório:', async function () {
+  it('3. Testa getById service se retorna error com id aleatório:', async function () {
     sinon.stub(Model, 'findOne').throws(new Error('Invalid Mongo id'));
     try {
       const service = new CarsService(carsODM, VehiclesValidations);

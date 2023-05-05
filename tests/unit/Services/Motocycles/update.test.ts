@@ -18,10 +18,13 @@ describe('Testa a atualização de motos:', function () {
       .update('634852326b35b59438fbea2f', getAllMotocyclesResponse[1]);
     expect(result).to.be.deep.equal(getAllMotocyclesResponse[1]);
   });
-  it('3. Testa updateMotoById service se retorna null com id aleatório:', async function () {
+  it('2. Testa updateMotoById service se retorna error com id aleatório:', async function () {
     sinon.stub(Model, 'findByIdAndUpdate').resolves();
-    const service = new MotocyclesService(motorcyclesODM, VehiclesValidations);
-    const result = await service.update('idaleatorio', getAllMotocyclesResponse[1]);
-    expect(result).to.be.deep.equal(null);
+    try {
+      const service = new MotocyclesService(motorcyclesODM, VehiclesValidations);
+      await service.update('idaleatorio', getAllMotocyclesResponse[1]);
+    } catch (error) {
+      expect((error as Error).message).to.equal('motorcycle not found');
+    }
   });
 });

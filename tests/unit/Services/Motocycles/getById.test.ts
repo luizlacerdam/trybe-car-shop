@@ -17,10 +17,22 @@ describe('Testa se recupera uma única moto pelo ID com sucesso:', function () {
     const result = await service.getById('6348513f34c397abcad040b2');
     expect(result).to.be.deep.equal(newMotorcycleResponse);
   });
-  it('2. Testa getById service se retorna null com id aleatório:', async function () {
+  it('2. Testa getById service se retorna error com id aleatório:', async function () {
     sinon.stub(Model, 'findOne').resolves();
-    const service = new MotocyclesService(motorcyclesODM, VehiclesValidations);
-    const result = await service.getById('idaleatorio');
-    expect(result).to.be.deep.equal(null);
+    try {
+      const service = new MotocyclesService(motorcyclesODM, VehiclesValidations);
+      await service.getById('idaleatorio');
+    } catch (error) {
+      expect((error as Error).message).to.equal('motorcycle not found');
+    }
+  });
+  it('3. Testa getById service se retorna error com id aleatório:', async function () {
+    sinon.stub(Model, 'findOne').throws(new Error('Invalid Mongo id'));
+    try {
+      const service = new MotocyclesService(motorcyclesODM, VehiclesValidations);
+      await service.getById('xxxxxx');
+    } catch (error) {
+      expect((error as Error).message).to.equal('Invalid Mongo id');
+    }
   });
 });
