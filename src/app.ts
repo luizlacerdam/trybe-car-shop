@@ -13,7 +13,7 @@ import motorcycleRouter from './Routes/motorcycles.route';
 import carsRoutes from './Routes/cars.routes';
 import ErrorHandler from './Middlewares/error.middleware';
 
-export default class App {
+class App {
   public app: express.Express;
 
   constructor() {
@@ -29,3 +29,6 @@ export default class App {
     this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
   }
 }
+
+export default App;
+export const { app } = new App();
