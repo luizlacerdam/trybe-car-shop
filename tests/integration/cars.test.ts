@@ -21,6 +21,13 @@ describe('Testa a rota /cars:', function () {
       expect(httpRes.status).to.be.eq(201);
       expect(httpRes.body).to.be.deep.eq(newCarResponse);
     });
+    it('1.2. Testa se retorna status error e status 500:', async function () {
+      sinon.stub(Model, 'create').throws(new Error());
+      const httpRes = await chai.request(app).post('/cars').send(newCarReq);
+      expect(httpRes.status).to.be.eq(500);
+      
+      // expect(httpRes.body).to.be.deep.eq(newCarResponse);
+    });
   });
   describe('2. Testa get na rota /cars:', function () {
     it('2.1. Testa se retorna status 200 e todos os carros cadastrados:', async function () {
@@ -28,6 +35,11 @@ describe('Testa a rota /cars:', function () {
       const httpRes = await chai.request(app).get('/cars');
       expect(httpRes.status).to.be.eq(200);
       expect(httpRes.body).to.be.deep.eq(allCarsResponse);
+    });
+    it('2.1. Testa se retorna status error e status 500:', async function () {
+      sinon.stub(Model, 'find').throws(new Error());
+      const httpRes = await chai.request(app).get('/cars');
+      expect(httpRes.status).to.be.eq(500);
     });
   });
   describe('3. Testa get na rota /cars:id :', function () {

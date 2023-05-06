@@ -13,7 +13,7 @@ export default abstract class AbstractService<T> {
     this._type = type;
     this._validation = validation;
   }
-  // underfined or null?
+
   public async create(vehicle: T):Promise<Vehicle | undefined> {
     const newDomain = VehicleFactory.createDomain<T>(this._type, vehicle);
     const newVehicle = await this._odm.create(newDomain as unknown as T);
